@@ -5,6 +5,7 @@ import dev.codename.gametest.gfx.Assets;
 import dev.codename.gametest.gfx.ImageLoader;
 import dev.codename.gametest.gfx.SpriteSheet;
 import dev.codename.gametest.input.KeyManager;
+import dev.codename.gametest.input.MouseManager;
 import dev.codename.gametest.states.GameState;
 import dev.codename.gametest.states.MenuState;
 import dev.codename.gametest.states.State;
@@ -27,10 +28,11 @@ public class Game implements Runnable {
     private Graphics g;
     
     //state
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
     //input
     private KeyManager keyManager;
+    private MouseManager mouseManager;
     //Handler
     private Handler handler;
     
@@ -44,18 +46,23 @@ public class Game implements Runnable {
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
+        mouseManager = new MouseManager();
 
     }
     
     private void init(){
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
         handler = new Handler(this);
                 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(gameState);
+        State.setState(menuState);
      
     }
     
@@ -112,7 +119,9 @@ public class Game implements Runnable {
     public KeyManager getKeyManager(){
         return keyManager;
     }
-    
+    public MouseManager getMouseManager(){
+        return mouseManager;
+    }
     
     
 

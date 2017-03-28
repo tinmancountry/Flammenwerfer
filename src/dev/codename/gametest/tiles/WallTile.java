@@ -12,10 +12,15 @@ import java.awt.image.BufferedImage;
  *
  * @author USER
  */
-public class GrassTile extends Tile{
+public class WallTile extends Tile{
     
-    public GrassTile(int id) {
-        super(Assets.grass, id);
+    public WallTile(int id) {
+        super(Assets.wall, id);
+    }
+    
+    @Override
+    public boolean isSolid(){
+        return true;
     }
 
     

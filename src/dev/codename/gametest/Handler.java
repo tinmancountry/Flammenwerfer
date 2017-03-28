@@ -6,6 +6,7 @@
 package dev.codename.gametest;
 
 import dev.codename.gametest.input.KeyManager;
+import dev.codename.gametest.input.MouseManager;
 import dev.codename.gametest.worlds.World;
 
 /**
@@ -20,8 +21,13 @@ public class Handler {
         this.game = game;
         
     }
+    
+            
     public KeyManager getKeyManager(){
         return game.getKeyManager();
+    }
+    public MouseManager getMouseManager(){
+        return game.getMouseManager();
     }
     public int getWidth(){
         return game.width;

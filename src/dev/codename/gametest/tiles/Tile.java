@@ -16,7 +16,7 @@ public class Tile {
     //STATIC STUFF HERE
     
     public static Tile[] tiles = new Tile[256];
-    public static Tile grassTile = new GrassTile(0);
+    public static Tile wallTile = new WallTile(0);
     public static Tile stoneTile = new StoneTile (1);
     public static Tile dirtTile = new DirtTile(2);
     public static Tile holeTile = new HoleTile(3);
@@ -40,6 +40,9 @@ public class Tile {
     }
     
     public boolean isSolid(){
+        return false;
+    }
+    public boolean isDamaging(){
         return false;
     }
     

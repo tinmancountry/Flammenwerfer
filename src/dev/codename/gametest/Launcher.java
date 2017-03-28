@@ -13,7 +13,7 @@ import dev.codename.gametest.display.Display;
  */
 public class Launcher {
         public static void main(String[] args){
-            Game game = new Game("Coward Zombie", 512, 512);
+            Game game = new Game("Coward Zombie", 576, 576);
             game.start();
         }
 }

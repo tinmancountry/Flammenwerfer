@@ -45,12 +45,16 @@ public abstract class Creature extends Entity {
             if(!collisionWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
                     !collisionWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
                 x += xMove;
+            }else{
+                x = tx * Tile.TILEWIDTH - bound.x - bound.width - 1;
             }
         }else if (xMove < 0){//Moving Left
             int tx = (int)(x + xMove + bound.x ) / Tile.TILEWIDTH;
             if(!collisionWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
                     !collisionWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
-                x += xMove;
+               x += xMove;
+            }else{
+                x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bound.x;
             }
         }
     }
@@ -61,6 +65,8 @@ public abstract class Creature extends Entity {
             if (!collisionWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
                     !collisionWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
                 y+=yMove;
+            }else{
+                y = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - bound.y;
             }
         }else if(yMove >0){//Moving Down
            int ty =(int)(y+ yMove+ bound.y+ bound.height)/Tile.TILEHEIGHT;
@@ -68,16 +74,26 @@ public abstract class Creature extends Entity {
             if (!collisionWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
                     !collisionWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
                 y+=yMove;
-            } 
+            } else{
+                y = ty* Tile.TILEHEIGHT - bound.y - bound.height - 1;
+            }
         }
     }
     protected boolean collisionWithTile(int x, int y){
         return handler.getWorld().getTile(x, y).isSolid();
     }
+    protected boolean damageWithTile(int x, int y){
+        return handler.getWorld().getTile(x, y).isDamaging();
+    }
+    //Damage
+     public void damageX(){
+         
+     }
+ 
 
-    /**
-     * @return the health
-     */
+   
+         
+         
     public int getHealth() {
         return health;
     }

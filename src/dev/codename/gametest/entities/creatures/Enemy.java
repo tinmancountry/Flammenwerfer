@@ -5,11 +5,9 @@
  */
 package dev.codename.gametest.entities.creatures;
 
-import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
 import dev.codename.gametest.gfx.Animation;
 import dev.codename.gametest.gfx.Assets;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -17,13 +15,13 @@ import java.awt.image.BufferedImage;
  *
  * @author USER
  */
-public class Player extends Creature {
-    
+public class Enemy extends Creature {
     //Animation
     private Animation animDown, animUp, animLeft, animRight;
-    
-    public Player( Handler handler, float x, float y) {
-        super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+   
+
+    public Enemy(Handler handler, float x,float y) {
+        super(handler, x, y,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGHT);
         
         bound.x = 0;
         bound.y = 0;
@@ -31,11 +29,12 @@ public class Player extends Creature {
         bound.height = 27;
         
         //Animation
-        animDown = new Animation(500, Assets.player_down);
-        animUp = new Animation (500, Assets.player_up);
-        animLeft = new Animation (500, Assets.player_left);
-        animRight = new Animation (500,Assets.player_right);
+        animDown = new Animation(500, Assets.enemy_down);
+        animUp = new Animation (500, Assets.enemy_up);
+        animLeft = new Animation (500, Assets.enemy_left);
+        animRight = new Animation (500,Assets.enemy_right);
     }
+    
 
     @Override
     public void update() {
@@ -44,24 +43,13 @@ public class Player extends Creature {
         animUp.update();
         animLeft.update();
         animRight.update();
-        //movement  
-        getInput();
-        move();
-      
+        //move
+        
     }
-    private void getInput(){
+    private void aiMove(){
         xMove = 0;
         yMove = 0;
         
-        if(handler.getKeyManager().up)
-            yMove = -speed;
-        if(handler.getKeyManager().down)
-            yMove =  speed;
-        if(handler.getKeyManager().left)
-            xMove = -speed;
-        if(handler.getKeyManager().right)
-            xMove =  speed;
-            
     }
 
     @Override
@@ -81,7 +69,6 @@ public class Player extends Creature {
             return animDown.getCurrentFrame();
         }
     }
-    
     
     
 }

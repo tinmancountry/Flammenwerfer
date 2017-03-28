@@ -23,6 +23,7 @@ public abstract class Entity {
     protected Rectangle bound;
     
     
+  
     
     public Entity(Handler handler, float x, float y, int width, int height){
         this.handler = handler;
@@ -33,6 +34,8 @@ public abstract class Entity {
         
         bound = new Rectangle(0, 0, width, height);
     }
+    
+    
     
     public abstract void update();
     

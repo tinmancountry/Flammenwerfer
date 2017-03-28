@@ -7,6 +7,10 @@ package dev.codename.gametest.worlds;
 
 import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
+import dev.codename.gametest.entities.EntityManager;
+import dev.codename.gametest.entities.creatures.Brain;
+import dev.codename.gametest.entities.creatures.Enemy;
+import dev.codename.gametest.entities.creatures.Player;
 import dev.codename.gametest.tiles.Tile;
 import dev.codename.gametest.utils.Utils;
 import java.awt.Graphics;
@@ -20,15 +24,23 @@ public class World {
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tiles;
+    //Entities
+    private EntityManager entityManager;
     
     public World(Handler handler, String path){
         this.handler = handler;
+        entityManager = new EntityManager(handler, new Player(handler,100,100), new Enemy (handler,200,200),
+                new Enemy (handler,300,300),new Enemy (handler,400,400), new Brain (handler,100,100));
+        
         loadWorld(path);
         
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
+
     }
    
     public void update(){
-        
+        getEntityManager().update();
     }
     public void render(Graphics g){
         for(int y = 0;y < height;y++){
@@ -37,6 +49,8 @@ public class World {
                 
             }
         }
+        //Entities
+        getEntityManager().render(g);
     }
     
     public Tile getTile(int x, int y){
@@ -48,7 +62,8 @@ public class World {
             return Tile.dirtTile;
         return t;
     }
-            
+    
+     
     private void loadWorld(String path){
        String file = Utils.loadFileAsString(path);
        String[] tokens = file.split("\\s+");
@@ -63,6 +78,13 @@ public class World {
                tiles[x][y] = Utils.parseInt(tokens[(x + y * width)+4]);
            }
        }
+    }
+
+    /**
+     * @return the entityManager
+     */
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
     
 }
