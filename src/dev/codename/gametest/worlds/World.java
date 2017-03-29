@@ -29,8 +29,8 @@ public class World {
     
     public World(Handler handler, String path){
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler,100,100), new Enemy (handler,200,200),
-                new Enemy (handler,300,300),new Enemy (handler,400,400), new Brain (handler,100,100));
+        entityManager = new EntityManager(handler, new Player(handler,100,100), new Enemy (handler,200,400),
+                new Enemy (handler,300,100),new Enemy (handler,400,267), new Brain (handler,100,100));
         
         loadWorld(path);
         
