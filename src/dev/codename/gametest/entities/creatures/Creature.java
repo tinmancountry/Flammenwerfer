@@ -27,7 +27,7 @@ public abstract class Creature extends Entity {
     protected float speed;
     protected float xMove;
     protected float yMove;
-    
+    protected int score;
     
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y,width,height);
@@ -39,9 +39,107 @@ public abstract class Creature extends Entity {
     public void move(){
         moveX();
         moveY();
-        
-        
+        damageX();
+        damageY();
+        System.out.println(health);     
     }
+    public void score(){
+        scoreX();
+        scoreY();
+        System.out.println(score);
+    }
+    public void scoreX(){
+        if(xMove > 0){//MOving Right
+            int tx = (int)(x + xMove + bound.x + bound.width) / Tile.TILEWIDTH;
+            if(!scoreWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
+                    !scoreWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
+                score=score;
+            }else{
+                
+                score= score + 1;
+                System.out.println(score);
+            }
+        }else if (xMove < 0){//Moving Left
+            int tx = (int)(x + xMove + bound.x ) / Tile.TILEWIDTH;
+            if(!scoreWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
+                    !damageWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
+               score=score;
+            }else{
+                score= score + 1;
+                System.out.println(score);
+            }
+        }
+    }
+    public void scoreY(){
+        if(yMove < 0){//Moving Up
+            int ty =(int)(y+ yMove+ bound.y)/Tile.TILEHEIGHT;
+            
+            if (!scoreWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
+                    !scoreWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
+                score=score;
+            }else{
+                score= score + 1;
+                System.out.println(score);
+            }
+        }else if(yMove >0){//Moving Down
+           int ty =(int)(y+ yMove+ bound.y+ bound.height)/Tile.TILEHEIGHT;
+            
+            if (!scoreWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
+                    !scoreWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
+                score=score;
+            } else{
+                score= score + 1;
+                System.out.println(score);
+            }
+        }
+    }
+    
+    public void damageX(){
+        if(xMove > 0){//MOving Right
+            int tx = (int)(x + xMove + bound.x + bound.width) / Tile.TILEWIDTH;
+            if(!damageWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
+                    !damageWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
+                health=health;
+            }else{
+                x = tx * Tile.TILEWIDTH - bound.x - bound.width - 1;
+                health= health - 1;
+                System.out.println(health);
+            }
+        }else if (xMove < 0){//Moving Left
+            int tx = (int)(x + xMove + bound.x ) / Tile.TILEWIDTH;
+            if(!damageWithTile(tx, (int) (y+bound.y)/ Tile.TILEHEIGHT) &&
+                    !damageWithTile(tx, (int) (y + bound.y + bound.height)/ Tile.TILEHEIGHT)){
+               health=health;
+            }else{
+                health= health - 1;
+                System.out.println(health);
+            }
+        }
+    }
+    public void damageY(){
+        if(yMove < 0){//Moving Up
+            int ty =(int)(y+ yMove+ bound.y)/Tile.TILEHEIGHT;
+            
+            if (!damageWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
+                    !damageWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
+                health=health;
+            }else{
+                health= health - 1;
+                System.out.println(health);
+            }
+        }else if(yMove >0){//Moving Down
+           int ty =(int)(y+ yMove+ bound.y+ bound.height)/Tile.TILEHEIGHT;
+            
+            if (!damageWithTile((int)(x+ bound.x)/Tile.TILEWIDTH,ty)&&
+                    !damageWithTile((int)(x+ bound.x+ bound.width)/Tile.TILEWIDTH,ty)){
+                health=health;
+            } else{
+                health= health - 1;
+                System.out.println(health);
+            }
+        }
+    }
+    
     public void moveX(){
         if(xMove > 0){//MOving Right
             int tx = (int)(x + xMove + bound.x + bound.width) / Tile.TILEWIDTH;
@@ -61,6 +159,7 @@ public abstract class Creature extends Entity {
             }
         }
     }
+    
     
    
     
@@ -91,10 +190,9 @@ public abstract class Creature extends Entity {
     protected boolean damageWithTile(int x, int y){
         return handler.getWorld().getTile(x, y).isDamaging();
     }
-    //Damage
-     public void damageX(){
-         
-     }
+    protected boolean scoreWithTile(int x, int y){
+        return handler.getWorld().getTile(x, y).isPoint();
+    }
  
 
    

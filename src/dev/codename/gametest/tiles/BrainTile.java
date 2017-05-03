@@ -6,22 +6,21 @@
 package dev.codename.gametest.tiles;
 
 import dev.codename.gametest.gfx.Assets;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author USER
  */
-public class HoleTile extends Tile {
+public class BrainTile extends Tile {
     
-    public HoleTile(int id) {
-        super(Assets.hole, id);
+    public BrainTile(int id) {
+        super(Assets.brain_item[0], id);
     }
+
     
     @Override
-    public boolean isDamaging(){
+    public boolean isPoint(){
         return true;
     }
-    
- 
-    
 }

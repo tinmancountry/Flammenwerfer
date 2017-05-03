@@ -20,6 +20,7 @@ public class Tile {
     public static Tile stoneTile = new StoneTile (1);
     public static Tile dirtTile = new DirtTile(2);
     public static Tile holeTile = new HoleTile(3);
+    public static Tile brainTile = new BrainTile(4);
     
     //CLASS
     public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
@@ -43,6 +44,9 @@ public class Tile {
         return false;
     }
     public boolean isDamaging(){
+        return false;
+    }
+    public boolean isPoint(){
         return false;
     }
     

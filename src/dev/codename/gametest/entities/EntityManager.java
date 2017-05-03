@@ -6,7 +6,6 @@
 package dev.codename.gametest.entities;
 
 import dev.codename.gametest.Handler;
-import dev.codename.gametest.entities.creatures.Brain;
 import dev.codename.gametest.entities.creatures.Enemy;
 import dev.codename.gametest.entities.creatures.Player;
 import java.awt.Graphics;
@@ -20,22 +19,24 @@ public class EntityManager {
     private Handler handler;
     private Player player;
     private Enemy enemy1, enemy2, enemy3;
-    private Brain brain;
     private ArrayList<Entity> entities;
-    public EntityManager(Handler handler, Player player, Enemy enemy1,Enemy enemy2, Enemy enemy3, Brain brain){
+    public EntityManager(Handler handler, Player player, Enemy enemy1,Enemy enemy2, Enemy enemy3){
         this.handler = handler;
         this.player = player;
         this.enemy1 = enemy1;
         this.enemy2 = enemy2;
         this.enemy3 = enemy3;
-        this.brain = brain;
         entities = new ArrayList<Entity>();
         addEntity(player);
         addEntity(enemy1);
         addEntity(enemy2);
         addEntity(enemy3);
-        addEntity(brain);
         
+        
+    }
+
+    public EntityManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void update(){
         for(int i = 0;i < entities.size();i++){

@@ -8,6 +8,7 @@ import dev.codename.gametest.input.KeyManager;
 import dev.codename.gametest.input.MouseManager;
 import dev.codename.gametest.states.GameState;
 import dev.codename.gametest.states.MenuState;
+import dev.codename.gametest.states.OverState;
 import dev.codename.gametest.states.State;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -30,6 +31,7 @@ public class Game implements Runnable {
     //state
     public State gameState;
     public State menuState;
+    public State overState;
     //input
     private KeyManager keyManager;
     private MouseManager mouseManager;
@@ -62,6 +64,7 @@ public class Game implements Runnable {
                 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
+        overState = new OverState(handler);
         State.setState(menuState);
      
     }

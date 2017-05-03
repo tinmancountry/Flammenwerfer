@@ -46,7 +46,7 @@ public class Enemy extends Creature {
         animLeft.update();
         animRight.update();
         //move
-        x-=speed;
+        aiMove();
         move();
         
         
@@ -57,25 +57,25 @@ public class Enemy extends Creature {
     private void aiMove(){
         xMove = 0;
         yMove = 0;
-        Random ran = new Random();
-        int n = ran.nextInt(3);
-        if(n==0){
-            yMove= -speed;
+        Random r = new Random();
+        int i = r.nextInt(99);
+        if (i==1){
+            yMove=-speed;
             y-=speed;
         }
-        int i = ran.nextInt(3);
-        if(i==1){
-            yMove= speed;
+        if (i==2){
+            yMove=speed;
             y+=speed;
         }
-        if(n==2){
-            xMove= -speed;
+        if (i==3){
+            xMove=-speed;
             x-=speed;
         }
-        if(n==3){
-            xMove= speed;
-            x+=speed;
+        if (i==4){
+            yMove=speed;
+            y+=speed;
         }
+        
         
                 
     }

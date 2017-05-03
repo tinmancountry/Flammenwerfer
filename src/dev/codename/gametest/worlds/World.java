@@ -8,7 +8,6 @@ package dev.codename.gametest.worlds;
 import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
 import dev.codename.gametest.entities.EntityManager;
-import dev.codename.gametest.entities.creatures.Brain;
 import dev.codename.gametest.entities.creatures.Enemy;
 import dev.codename.gametest.entities.creatures.Player;
 import dev.codename.gametest.tiles.Tile;
@@ -29,8 +28,8 @@ public class World {
     
     public World(Handler handler, String path){
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler,100,100), new Enemy (handler,200,400),
-                new Enemy (handler,300,100),new Enemy (handler,400,267), new Brain (handler,100,100));
+        entityManager = new EntityManager(handler, new Player(handler,0,0), new Enemy (handler,200,400),
+                new Enemy (handler,300,100),new Enemy (handler,400,267));
         
         loadWorld(path);
         

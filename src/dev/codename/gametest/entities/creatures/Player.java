@@ -41,7 +41,7 @@ public class Player extends Creature {
     private EntityManager entityManager;
     public void death(){
         if (health==0){
-            State.setState(handler.getGame());
+            State.setState(handler.getGame().overState);
             
         }
     }
@@ -57,6 +57,7 @@ public class Player extends Creature {
         getInput();
         move();
         death();
+        score();
       
     }
     private void getInput(){
