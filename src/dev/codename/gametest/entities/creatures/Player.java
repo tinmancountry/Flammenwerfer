@@ -7,8 +7,10 @@ package dev.codename.gametest.entities.creatures;
 
 import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
+import dev.codename.gametest.entities.EntityManager;
 import dev.codename.gametest.gfx.Animation;
 import dev.codename.gametest.gfx.Assets;
+import dev.codename.gametest.states.State;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -36,6 +38,13 @@ public class Player extends Creature {
         animLeft = new Animation (500, Assets.player_left);
         animRight = new Animation (500,Assets.player_right);
     }
+    private EntityManager entityManager;
+    public void death(){
+        if (health==0){
+            State.setState(handler.getGame());
+            
+        }
+    }
 
     @Override
     public void update() {
@@ -47,6 +56,7 @@ public class Player extends Creature {
         //movement  
         getInput();
         move();
+        death();
       
     }
     private void getInput(){
