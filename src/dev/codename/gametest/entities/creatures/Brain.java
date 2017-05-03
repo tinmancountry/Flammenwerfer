@@ -26,7 +26,7 @@ public class Brain extends Creature {
         bound.height = 27;
         
         //Animation
-        brain = new Animation(450, Assets.brain_item);
+        brain = new Animation(700, Assets.brain_item);
     }
 
     @Override
@@ -49,6 +49,9 @@ public class Brain extends Creature {
         }else{
             return brain.getCurrentFrame();
         }
+    }
+    public boolean point(){
+        return true;
     }
     
 }

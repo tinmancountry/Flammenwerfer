@@ -8,6 +8,7 @@ package dev.codename.gametest.entities.creatures;
 import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
 import dev.codename.gametest.entities.Entity;
+import dev.codename.gametest.states.State;
 import dev.codename.gametest.tiles.Tile;
 
 /**
@@ -27,6 +28,7 @@ public abstract class Creature extends Entity {
     protected float xMove;
     protected float yMove;
     
+    
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y,width,height);
         health = DEFAULT_HEALTH;
@@ -37,6 +39,7 @@ public abstract class Creature extends Entity {
     public void move(){
         moveX();
         moveY();
+        
         
     }
     public void moveX(){
@@ -58,6 +61,9 @@ public abstract class Creature extends Entity {
             }
         }
     }
+    
+   
+    
     public void moveY(){
         if(yMove < 0){//Moving Up
             int ty =(int)(y+ yMove+ bound.y)/Tile.TILEHEIGHT;

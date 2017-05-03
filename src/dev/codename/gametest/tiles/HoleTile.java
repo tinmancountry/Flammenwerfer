@@ -18,6 +18,7 @@ public class HoleTile extends Tile {
         super(Assets.hole, id);
     }
     
+    @Override
     public boolean isDamaging(){
         return true;
     }

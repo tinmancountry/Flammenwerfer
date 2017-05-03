@@ -10,6 +10,7 @@ import dev.codename.gametest.gfx.Animation;
 import dev.codename.gametest.gfx.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  *
@@ -18,6 +19,7 @@ import java.awt.image.BufferedImage;
 public class Enemy extends Creature {
     //Animation
     private Animation animDown, animUp, animLeft, animRight;
+    
    
 
     public Enemy(Handler handler, float x,float y) {
@@ -44,12 +46,38 @@ public class Enemy extends Creature {
         animLeft.update();
         animRight.update();
         //move
+        x-=speed;
+        move();
+        
         
     }
+    
+    
+    
     private void aiMove(){
         xMove = 0;
         yMove = 0;
+        Random ran = new Random();
+        int n = ran.nextInt(3);
+        if(n==0){
+            yMove= -speed;
+            y-=speed;
+        }
+        int i = ran.nextInt(3);
+        if(i==1){
+            yMove= speed;
+            y+=speed;
+        }
+        if(n==2){
+            xMove= -speed;
+            x-=speed;
+        }
+        if(n==3){
+            xMove= speed;
+            x+=speed;
+        }
         
+                
     }
 
     @Override

@@ -5,13 +5,10 @@
  */
 package dev.codename.gametest.states;
 
-import dev.codename.gametest.Game;
 import dev.codename.gametest.Handler;
-import dev.codename.gametest.entities.creatures.Player;
-import dev.codename.gametest.gfx.Assets;
-import dev.codename.gametest.tiles.Tile;
 import dev.codename.gametest.worlds.World;
 import java.awt.Graphics;
+import java.util.Timer;
 
 /**
  *
@@ -21,14 +18,15 @@ public class GameState extends State {
     
    
     private World world;
+    static Timer timer;
+    
     
     
     public GameState(Handler handler){
         super(handler);
         world = new World(handler,"Res/World/world1.txt");
-        handler.setWorld(world);
-        
-        
+        handler.setWorld(world); 
+        timer = new Timer();
         
         
         
